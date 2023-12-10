@@ -126,8 +126,6 @@ dependencies {
 
 
 
-
-
 ![](<../.gitbook/assets/스크린샷 2023-12-10 오후 4.43.15.png>)
 
 파일 위치는 상관이 없지만 우선 config -> jwt -> JwtProperties 파일을 생성한다.
@@ -324,52 +322,6 @@ class TokenProviderTest {
 ```
 
 
-
-### 리프레시 토큰 도메인 구현하기
-
-리프레시 토큰은 DB에 저장하는 정보이므로 엔티티와 리포지터리를 추가해야한다.
-
-domain 디렉터리에 RefreshToken.java 파일을 생성한다.
-
-```java
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
-@Getter
-@Entity
-public class RefreshToken {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", updatable = false)
-    private Long id;
-
-    @Column(name = "user_id", nullable = false, unique = true)
-    private Long userId;
-
-    @Column(name = "refresh_token", nullable = false)
-    private String refreshToken;
-
-    public RefreshToken(Long userId, String refreshToken) {
-        this.userId = userId;
-        this.refreshToken = refreshToken;
-    }
-
-    public RefreshToken update(String newRefreshToken) {
-        this.refreshToken = newRefreshToken;
-
-        return this;
-    }
-}
-
-```
-
-
-
-```java
-public interface RefreshTokenRepository extends JpaRepository<RefreshToken, Long> {
-    Optional<RefreshToken> findByUserId(Long userId);
-    Optional<RefreshToken> findByRefreshToken(String refreshToken);
-}
-```
 
 
 
