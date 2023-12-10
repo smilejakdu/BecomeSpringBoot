@@ -7,4 +7,6 @@
 * [05 ORM](05-orm.md)
 * [블로그 만들기](undefined/README.md)
   * [엔티티 구성하기](undefined/undefined.md)
-  * [Page 2](undefined/page-2.md)
+* [08 스프링 시큐리티로](08/README.md)
+  * [인증과 인가](08/undefined.md)
+  * [JWT 로 로그인/로그아웃 구현하기](08/jwt.md)
