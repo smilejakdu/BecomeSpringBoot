@@ -59,7 +59,104 @@ AWS 로 운영하다보면 알아야할 개념들이 많습니다.
 
 이후 책에서 생성 배포 방법에 대해서 알려준다.
 
-한번 따라서 배포해보는것도 좋은 경험일것 같습니다.
+책에선 그대로 따라하기엔 정보가 부족하다.
+
+IAM 설정도 해줘야하는데 거기에 대한설명이 없어보였다.
+
+```markdown
+ Configuration validation exception: Invalid option specification (Namespace:
+'aws:elasticbeanstalk:managedactions', OptionName: 'ManagedActionsEnabled'): You
+ can't enable managed platform updates when your environment uses the service-linked
+ role 'AWSServiceRoleForElasticBeanstalk'. Select a service role that has the
+ 'AWSElasticBeanstalkManagedUpdatesCustomerRolePolicy' managed policy.
+
+```
+
+위와 같은 에러를 만날 확률이 높다.
+
+## 엘라스틱 빈스톡 서비스 생성
+
+<figure><img src=".gitbook/assets/스크린샷 2023-12-13 오후 8.05.24.png" alt=""><figcaption></figcaption></figure>
 
 
+
+화면으로 가서 애플리케이션을 클릭한다.
+
+애플리케이션 이름을 작성하고,
+
+플랫폼을&#x20;
+
+```markdown
+Java
+Corretto 17 running on 64bit Amazon Linux 2
+3.4.5 (Recommended)
+```
+
+를 선택한다.
+
+애플리케이션 코드는 샘플 애플리케이션 코드를 선택한다.
+
+
+
+{% embed url="https://stackoverflow.com/questions/51619828/aws-elastic-beanstalk-environment-must-have-instance-profile-associated-with-i" %}
+
+위와 같은 에러가 발생할 수 있다. 위의 에러는
+
+**IAM 인스턴스 프로파일 설정**: 'IAM 인스턴스 프로파일' 또는 'IamInstanceProfile' 옵션을 찾아 해당 필드에 `aws-elasticbeanstalk-ec2-role` (또는 원하는 IAM 역할 이름)을 입력합니다.
+
+
+
+위의 에러를 해결하다보면&#x20;
+
+{% embed url="https://dangdangee.tistory.com/entry/AWS-Elastic-Beanstalk-%EC%83%81%ED%83%9C-unknown-%EC%98%A4%EB%A5%98-%ED%95%B4%EA%B2%B0%EB%B0%A9%EB%B2%95" %}
+
+이런 에러도 만날 수 있다.
+
+
+
+환경설정이 제대로 되면&#x20;
+
+
+
+<figure><img src=".gitbook/assets/스크린샷 2023-12-13 오후 10.25.49.png" alt=""><figcaption></figcaption></figure>
+
+
+
+이렇게 나오게 된다.
+
+이제 정리를 하면 ,
+
+이후 업로드를 하면 된다.
+
+<figure><img src=".gitbook/assets/스크린샷 2023-12-13 오후 10.27.40.png" alt=""><figcaption></figcaption></figure>
+
+`./gradlew build` 를 통해서 build 를 진행한다.
+
+<figure><img src=".gitbook/assets/스크린샷 2023-12-13 오후 10.31.04.png" alt=""><figcaption></figcaption></figure>
+
+위와 같은 이미지가 보이게 된다.
+
+plain 파일은 그대로 두고 `demo-0.0.1-SNAPSHOT.jar` 파일만 가져와서 진행한다.
+
+
+
+<figure><img src=".gitbook/assets/스크린샷 2023-12-13 오후 10.32.43.png" alt=""><figcaption></figcaption></figure>
+
+배포를 시작한다.
+
+정보에 Deploying new version to instacne(s) 라고 나온다.
+
+<figure><img src=".gitbook/assets/스크린샷 2023-12-13 오후 10.34.22.png" alt=""><figcaption></figcaption></figure>
+
+만약 접근 권한을 셋팅하지않았다면 ,&#x20;
+
+
+
+<figure><img src=".gitbook/assets/스크린샷 2023-12-13 오후 11.15.51.png" alt=""><figcaption></figcaption></figure>
+
+
+
+<figure><img src=".gitbook/assets/스크린샷 2023-12-13 오후 11.16.15.png" alt=""><figcaption></figcaption></figure>
+
+위와 같은 에러가 발생한다.
 
