@@ -32,11 +32,14 @@ ssh-keygen -t rsa -C "git user email"
 
 
 
-<figure><img src="../.gitbook/assets/스크린샷 2023-12-11 오후 12.07.32.png" alt=""><figcaption></figcaption></figure>
+<figure><img src=".gitbook/assets/스크린샷 2023-12-11 오후 12.07.32.png" alt=""><figcaption></figcaption></figure>
 
 위의 키 값을 github 에 들어가면 settings 라고 보일것이다.
 
-<figure><img src="../.gitbook/assets/스크린샷 2023-12-11 오후 12.08.23.png" alt=""><figcaption></figcaption></figure>
+<figure><img src=".gitbook/assets/스크린샷 2023-12-11 오후 12.08.23.png" alt=""><figcaption></figcaption></figure>
 
 에 들어가면 New SSH Key 버튼을 클릭해서 등록해주면 된다.
 
+이후에 github repository 에 등록을 해주면 된다.
+
+이후 프로젝트를 github 에 올려둔다.
